@@ -14,4 +14,4 @@ const gameServer = new Server({
 gameServer.listen(port);
 gameServer.define("basic", RoomBasic);
 
-console.log("made the gayme server");
+console.log("made server on ws://localhost:" + port);
