@@ -29,5 +29,5 @@ Finally, you can type `build.bat` (Windows Only) or `lime test windows -debug` (
 First, download and install <a href="https://nodejs.org/en/download/">Node.js<a/>.<br>
 Next, open the source code of this repository in file explorer.<br>
 Now, you need to open command prompt (or any shell for that matter) in the `.server` folder of the source code.<br>
-Type `npm install -g ts-node` into the command prompt.<br>
+Type `npm install -g ts-node` into the command prompt, then just `npm install`.<br>
 Finally, type `npm run server` or `ts-node index.ts` and wait until it says the server was created.
