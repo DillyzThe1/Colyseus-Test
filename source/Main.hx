@@ -12,6 +12,8 @@ class Main extends Sprite
 	public static var client:Client;
 	public static var room:Room<RoomState>;
 
+	public static var GAME_TOKEN:String = "d13354db-c027-40a8-8228-ef16f0ea4a4b";
+
 	public function new()
 	{
 		super();
@@ -32,6 +34,6 @@ class Main extends Sprite
 		};
 
 		client = new Client("ws://localhost:23632");
-		client.joinOrCreate("basic", [/* options */], RoomState /* state class */, joinFunc);
+		client.joinOrCreate("basic", ["authToken" => Main.GAME_TOKEN], RoomState /* state class */, joinFunc);
 	}
 }

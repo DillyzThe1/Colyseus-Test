@@ -66,8 +66,14 @@ export class RoomBasic extends Room<RoomState> {
         updateMS(this, this.theRoomState);
     }
 
+    GAME_TOKEN:string = "d13354db-c027-40a8-8228-ef16f0ea4a4b";
     // Authorize client based on provided options before WebSocket handshake is complete
     onAuth (client: Client, options: any, request: http.IncomingMessage):boolean { 
+        if (options.authToken != this.GAME_TOKEN)
+        {
+            console.log(client.id + "(" + request.socket.remoteAddress + ") rejected! (reason: invalid or non-existent auth token)");
+            return false;
+        }
         console.log(client.id + "(" + request.socket.remoteAddress + ") authenticated!");
         return true;
     }
