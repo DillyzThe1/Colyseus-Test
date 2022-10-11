@@ -6,6 +6,8 @@ Max players per server: *3* (server-side setting)
 I OBVIOUSLY DO **NOT** OWN THE CHARACTER IN HERE.<br>
 <a href="https://en.wikipedia.org/wiki/Peter_Griffin">PETER GRIFFIN<a/> BELONGS TO <a href="https://en.wikipedia.org/wiki/Family_Guy">FAMILY GUY<a/>.<br>
 I LACK ANY ASSOCIATION WITH THE TEAM BEHIND <a href="https://en.wikipedia.org/wiki/Family_Guy">FAMILY GUY<a/>.<br>
+IF ANYONE UNDER OWNERSHIP OF HIM OR THE SHOW HE'S IN HAS A PROBLEM WITH HIM BEING HERE, PLEASE SUBMIT AN ISSUE & I'LL REPLACE HIM.<br>
+THIS SOFTWARE TEST IS NOT MONETIZED.<br>
 <br>
 Also, if you use ANY source code from this repository you must credit <a href="https://github.com/DillyzThe1">DillyzThe1<a/> for his work.<br>
 I spent an entire day researching the library to do this from the official <a href="https://docs.colyseus.io/">Colyseus documentation<a/>.<br>
