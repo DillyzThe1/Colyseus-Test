@@ -38,8 +38,7 @@ export class RoomBasic extends Room<RoomState> {
 
     // Authorize client based on provided options before WebSocket handshake is complete
     onAuth (client: Client, options: any, request: http.IncomingMessage):boolean { 
-        console.log(client.id + " authenticated!");
-        console.log("also screw you " + request.socket.remoteAddress + " lololoololololo");
+        console.log(client.id + "(" + request.socket.remoteAddress + ") authenticated!");
         return true;
     }
 
