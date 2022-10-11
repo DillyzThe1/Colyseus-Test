@@ -17,6 +17,14 @@ interface RoomAvailable
 
 class DummyState {}
 
+/**
+	NOTICE:
+	THIS FILE HAS BEEN MANUALLY EDITED BY DILLYZTHE1 AND IS THE REASON THIS FILE IS COPIED INTO THIS REPOSITORY.
+	YOU MAY FIND THE ORIGINAL HAXE FILE AT https://github.com/colyseus/colyseus-haxe/blob/master/src/io/colyseus/Client.hx
+
+	CHANGES:
+	- Throws a MatchMakeError when request.error exists, therefor nullifying a crash. (function: consumeSeatReservation)
+**/
 @:keep
 class Client
 {
