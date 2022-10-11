@@ -19,6 +19,25 @@ export class RoomState extends Schema {
         else if (movement.y)
             this.petermap.get(id).y += movement.y;
     }
+
+    @type("number") lastUpdateMS = 0;
+    updateMS() {
+        if (!this.activeMS)
+            return;
+        //console.log("ms update " + this.lastUpdateMS);
+
+        var timeMS = Math.round(new Date().getTime());
+        this.lastUpdateMS = timeMS;
+    }
+
+    activeMS:boolean = false;
+    startMSUpdater() {
+        if (this.activeMS)
+            return;
+        this.activeMS = true;
+        this.updateMS();
+    }
+
 }
 
 export class RoomBasic extends Room<RoomState> {
@@ -34,6 +53,17 @@ export class RoomBasic extends Room<RoomState> {
         this.onMessage("move", (client, data) => {
             this.theRoomState.movePeter(client.id, data);
         });
+        this.theRoomState.startMSUpdater();
+
+        function updateMS(room:RoomBasic, state:RoomState) {
+            if (!state.activeMS)
+                return;
+            state.updateMS();
+           // for (var i = 0; i < room.clients.length; i++)
+            //    room.clients[i].send("ping", {ms: state.lastUpdateMS});
+            setTimeout(function() {updateMS(room, state);}, 1500);
+        }
+        updateMS(this, this.theRoomState);
     }
 
     // Authorize client based on provided options before WebSocket handshake is complete
@@ -59,6 +89,7 @@ export class RoomBasic extends Room<RoomState> {
 
     // Cleanup callback, called after there are no more clients in the room. (see `autoDispose`)
     onDispose () { 
+        this.theRoomState.activeMS = false;
         console.log("killing self! " + this.roomId + " " + this.roomName);
     }
 }

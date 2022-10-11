@@ -6,19 +6,19 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.math.FlxMath;
 import flixel.system.FlxAssets.FlxGraphicAsset;
+import lime.app.Application;
 
 // https://github.com/colyseus/colyseus-haxe/blob/master/example/openfl/Source/Main.hx
 class PlayState extends FlxState
 {
 	public var heyPeter:Map<String, LerpedSprite>;
+	public var lastLastUpdateMS:Float = 0;
 
 	override public function create()
 	{
 		super.create();
-		trace('ne wmap');
 		heyPeter = new Map<String, LerpedSprite>();
 
-		trace(0);
 		Main.room.state.peters.onAdd = function(player, key)
 		{
 			if (heyPeter.exists(key))
@@ -34,14 +34,12 @@ class PlayState extends FlxState
 
 			player.onChange([]);
 		};
-		trace(1);
 		Main.room.state.peters.onChange = function(player, key)
 		{
 			// trace('update peter $key');
 			heyPeter[key].intX = player.x;
 			heyPeter[key].intY = player.y;
 		};
-		trace(2);
 		Main.room.state.peters.onRemove = function(player, key)
 		{
 			trace('no more peter $key');
@@ -49,7 +47,6 @@ class PlayState extends FlxState
 			remove(pg);
 			pg.destroy();
 		};
-		trace(3);
 		Main.room.onStateChange += function(state:RoomState)
 		{
 			// trace('stage cahnge: $state');
@@ -60,19 +57,27 @@ class PlayState extends FlxState
 				heyPeter[curpeter.id].intX = curpeter.x;
 				heyPeter[curpeter.id].intY = curpeter.y;
 			}
+
+			if (state.lastUpdateMS != lastLastUpdateMS)
+			{
+				lastLastUpdateMS = state.lastUpdateMS;
+				Application.current.window.title = 'Colyseus Test (Ping: ${Math.floor(Sys.time() * 1000 - state.lastUpdateMS)}ms)';
+			}
 		};
-		trace(4);
 		Main.room.onError += function(code:Int, message:String)
 		{
 			trace('connection error: ${message} (code ${code})');
 		};
-		trace(5);
 		Main.room.onLeave += function()
 		{
 			trace('no more room');
 			Sys.exit(0);
 		};
-		trace(6);
+
+		/*Main.room.onMessage("ping", function(ms:Float)
+			{
+				Application.current.window.title = 'Colyseus Test (Ping: ${Math.floor(Sys.time() * 1000 - ms)}ms) ${Sys.time() * 1000} $ms';
+		});*/
 	}
 
 	override public function update(elapsed:Float)

@@ -5,6 +5,8 @@ class RoomState extends Schema
 {
 	@:type("map", PeterGriffin)
 	public var peters:MapSchema<PeterGriffin> = new MapSchema<PeterGriffin>();
+	@:type("number")
+	public var lastUpdateMS:Dynamic = 0;
 }
 
 class PeterGriffin extends Schema
