@@ -79,11 +79,6 @@ class Client
 	@:generic
 	public function consumeSeatReservation<T>(response:Dynamic, stateClass:Class<T>, callback:(MatchMakeError, Room<T>) -> Void)
 	{
-		/*trace(stateClass);
-			trace(response);
-			trace(response.room);
-			trace(response.room.name); */
-
 		if (response.error != null)
 		{
 			callback(new MatchMakeError(response.code, response.error), null);
