@@ -1,12 +1,28 @@
 package;
 
-import RoomState.PeterGriffin;
+import RoomState.PeterData;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.math.FlxMath;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import lime.app.Application;
+
+/**
+Copyright 2022 DillyzThe1
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+**/
 
 // https://github.com/colyseus/colyseus-haxe/blob/master/example/openfl/Source/Main.hx
 class PlayState extends FlxState
@@ -53,7 +69,7 @@ class PlayState extends FlxState
 
 			for (i in 0...state.peters.length)
 			{
-				var curpeter:PeterGriffin = state.peters.getByIndex(i);
+				var curpeter:PeterData = state.peters.getByIndex(i);
 				heyPeter[curpeter.id].intX = curpeter.x;
 				heyPeter[curpeter.id].intY = curpeter.y;
 			}
